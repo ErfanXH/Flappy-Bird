@@ -56,13 +56,16 @@ class SmartFlappyBird:
 
     def get_action(self, state):
         # implement the best way to get action base on current state
-        if utils.flip_coin(self.epsilon):  # Random
-            rand = random.randint(0, 100)
-            choice = 1
-            if rand < 90:
-                choice = 0
-            return SmartFlappyBird.get_all_actions()[choice]
-        else:  # Based on Policy
+        if mode == 0:
+            if utils.flip_coin(self.epsilon):  # Random
+                rand = random.randint(0, 100)
+                choice = 1
+                if rand < 90:
+                    choice = 0
+                return SmartFlappyBird.get_all_actions()[choice]
+            else:  # Based on Policy
+                return self.policy(state)
+        else:
             return self.policy(state)
 
     def maxQ(self, state):
