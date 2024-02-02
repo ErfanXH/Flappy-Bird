@@ -12,7 +12,7 @@ class SmartFlappyBird:
 
     def policy(self, state):
         # implement the best way to get action base on current state
-        return NotImplemented 
+        return self.max_arg(state)
 
     @staticmethod
     def get_all_actions():
