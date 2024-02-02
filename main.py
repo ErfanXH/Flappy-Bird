@@ -124,24 +124,22 @@ class SmartFlappyBird:
         env.close()
 
     def run_with_no_policy(self, landa):
-        scores = []
-        for _ in range(10):
-            self.landa = landa
-            # no policy test
-            env = flappy_bird_gym.make("FlappyBird-v0")
-            observation = env.reset()
-            info = {'score': 0}
-            while True:
-                action = self.get_action(observation)
-                prev_info = info
-                observation, reward, done, info = env.step(action)
-                reward = self.compute_reward(prev_info, info, done, observation)
-                env.render()
-                time.sleep(1 / 30)  # FPS
-                if done:
-                    break
-            env.close()
-            scores.append(info['score'])
+        self.landa = landa
+        # no policy test
+        env = flappy_bird_gym.make("FlappyBird-v0")
+        observation = env.reset()
+        info = {'score': 0}
+        while True:
+            action = self.get_action(observation)
+            prev_info = info
+            observation, reward, done, info = env.step(action)
+            reward = self.compute_reward(
+                prev_info, info, done, observation)
+            env.render()
+            time.sleep(1 / 30)  # FPS
+            if done:
+                break
+        env.close()
 
     def run(self):
         self.run_with_policy(1)
