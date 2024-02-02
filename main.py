@@ -4,6 +4,9 @@ import time
 import random
 import numpy as np
 
+global mode
+mode = 0
+
 class SmartFlappyBird:
     def __init__(self, iterations):
         self.Qvalues = utils.Counter()
@@ -137,6 +140,8 @@ class SmartFlappyBird:
 
     def run(self):
         self.run_with_policy(1)
+        global mode
+        mode = 1
         self.run_with_no_policy(1)
 
 
