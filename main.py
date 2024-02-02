@@ -72,7 +72,13 @@ class SmartFlappyBird:
 
     def update(self, reward, state, action, next_state):
         # update q table
-        return NotImplemented
+        state = self.convert_continuous_to_discrete(state)
+        next_state = self.convert_continuous_to_discrete(next_state)
+        my_tuple = state, action
+        max_arg_next_state = self.max_arg(next_state)
+        self.Qvalues[my_tuple] += self.alpha * \
+            (reward + self.landa * (self.Qvalues[next_state, max_arg_next_state]) -
+             self.Qvalues[my_tuple])
 
     def update_epsilon_alpha(self):
         # update epsilon and alpha base on iterations
