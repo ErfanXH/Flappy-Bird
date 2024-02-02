@@ -89,7 +89,8 @@ class SmartFlappyBird:
 
     def update_epsilon_alpha(self):
         # update epsilon and alpha base on iterations
-        return NotImplemented
+        self.alpha = max(self.alpha * 0.95, 0.01)
+        self.epsilon = max(self.epsilon * 0.95, 0.1)
 
     def run_with_policy(self, landa):
         self.landa = landa
