@@ -56,7 +56,10 @@ class SmartFlappyBird:
 
     def maxQ(self, state):
         # return max Q value of a state
-        return NotImplemented
+        state = self.convert_continuous_to_discrete(tuple(state))
+        actions = self.get_all_actions()
+        q_values = [self.Qvalues.get((state, action), 0) for action in actions]
+        return max(q_values)
 
     def max_arg(self, state):
         # return argument of the max q of a state
