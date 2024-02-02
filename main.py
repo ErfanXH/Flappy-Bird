@@ -8,8 +8,8 @@ class SmartFlappyBird:
     def __init__(self, iterations):
         self.Qvalues = utils.Counter()
         self.landa = 1
-        self.epsilon = None
-        self.alpha = None 
+        self.epsilon = 0.8
+        self.alpha = 0.5 
         self.iterations = iterations  # Training
 
     def policy(self, state):
