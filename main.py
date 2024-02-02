@@ -1,6 +1,7 @@
 import utils
 import flappy_bird_gym
 import time
+import random
 import numpy as np
 
 class SmartFlappyBird:
@@ -52,8 +53,14 @@ class SmartFlappyBird:
 
     def get_action(self, state):
         # implement the best way to get action base on current state
-        # you can use `utils.flip_coin` and `random.choices`
-        return NotImplemented
+        if utils.flip_coin(self.epsilon):  # Random
+            rand = random.randint(0, 100)
+            choice = 1
+            if rand < 90:
+                choice = 0
+            return SmartFlappyBird.get_all_actions()[choice]
+        else:  # Based on Policy
+            return self.policy(state)
 
     def maxQ(self, state):
         # return max Q value of a state
