@@ -21,7 +21,20 @@ class SmartFlappyBird:
     @staticmethod
     def convert_continuous_to_discrete(state):
         # implement the best way to convert continuous distance values to discrete values
-        return NotImplemented
+        # range of x : (0.000, 1.650)
+        # range of y : (-0.500, 0.650)
+
+        x, y = state
+
+        rounded_x = round(x, 1)
+        rounded_y = round(y, 1)
+
+        if rounded_x == -0.0:
+            rounded_x = 0.0
+        if rounded_y == -0.0:
+            rounded_y = 0.0
+
+        return rounded_x, rounded_y
 
     def compute_reward(self, prev_info, new_info, done, observation):
         # implement the best way to compute reward base on observation and score
