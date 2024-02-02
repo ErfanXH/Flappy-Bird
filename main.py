@@ -1,6 +1,7 @@
 import utils
 import flappy_bird_gym
 import time
+import numpy as np
 
 class SmartFlappyBird:
     def __init__(self, iterations):
@@ -63,7 +64,11 @@ class SmartFlappyBird:
 
     def max_arg(self, state):
         # return argument of the max q of a state
-        return NotImplemented
+        state = self.convert_continuous_to_discrete(tuple(state))
+        actions = self.get_all_actions()
+        values = [self.Qvalues.get((state, action), 0)
+                  for action in actions]
+        return actions[np.argmax(values)]
 
     def update(self, reward, state, action, next_state):
         # update q table
