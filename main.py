@@ -25,7 +25,16 @@ class SmartFlappyBird:
 
     def compute_reward(self, prev_info, new_info, done, observation):
         # implement the best way to compute reward base on observation and score
-        return NotImplemented
+        observation = self.convert_continuous_to_discrete((observation))
+        _, y = observation
+        if done:  # Lost
+            return -1000
+        # Inside Pipe
+        elif (0 <= y and y <= 0.05):
+            new_info['score'] = prev_info['score'] + 1
+            return 500
+        else:  # Continues
+            return 1
 
     def get_action(self, state):
         # implement the best way to get action base on current state
