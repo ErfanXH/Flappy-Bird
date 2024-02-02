@@ -112,8 +112,10 @@ class SmartFlappyBird:
                 prev_info = info
                 observation, reward, done, info = env.step(action)
                 observations.append(observation)
-                reward = self.compute_reward(prev_info, info, done, observation)
-                self.update(reward, this_state, action, observation)
+                reward = self.compute_reward(
+                    prev_info, info, done, tuple(observation))
+                self.update(reward, tuple(this_state),
+                            action, tuple(observation))
                 self.update_epsilon_alpha()
                 if done:
                     observation = env.reset()
