@@ -155,5 +155,5 @@ class SmartFlappyBird:
         self.run_with_no_policy(1)
 
 
-program = SmartFlappyBird(iterations=2000)
+program = SmartFlappyBird(iterations=1000)
 program.run()
